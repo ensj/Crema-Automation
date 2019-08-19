@@ -1,0 +1,22 @@
+{
+  "name": "automation-testing",
+  "version": "1.0.0",
+  "description": "automation testing tool for crema",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -R spec --reporter mochawesome"
+  },
+  "author": "Junhyun Lim",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^6.2.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "selenium-webdriver": "^4.0.0-alpha.4",
+    "simple-oauth2": "^2.2.1"
+  },
+  "devDependencies": {
+    "mochawesome": "^4.0.1"
+  }
+}
