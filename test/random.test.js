@@ -20,7 +20,7 @@ var o = new chrome
 // MAKESHOP FAILED PRODUCT TEST
 //test to check
 
-describe('Failed Product Test', function () {
+describe.only('Failed Product Test', function () {
 	this.timeout(30000);
 	this.slow(20000);
 	let Page, page, driver, token, id, url;
@@ -45,5 +45,6 @@ describe('Failed Product Test', function () {
 		//await page.getProduct();
 		await page.getReviews();
 		await page.writeReview();
+		await page.deleteReview();
 	});
 });

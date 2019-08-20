@@ -20,7 +20,7 @@ var o = new chrome
 // CAFE24 WIDGET TEST
 
 
-describe.only('cafe24 Site Check 2', function () {
+describe('cafe24 Site Check 2', function () {
 	this.timeout(60000);
 	this.slow(20000);
 	let Page, page, driver, token, id, url;
