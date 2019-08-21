@@ -41,10 +41,17 @@ describe.only('Failed Product Test', function () {
 		await page.quit();
 	});
 
-	it('Get the wrong product', async function() {
+	it.skip('Reviews test', async function() {
 		//await page.getProduct();
 		await page.getReviews();
 		await page.writeReview();
 		await page.deleteReview();
+	});
+
+	it('Questions test', async function() {
+		//await page.get("http://thecrema1.cafe24.com/board/product/list.html?board_no=6");
+		await page.getProduct();
+		await page.writeQuestion();
+		await page.deleteQuestion();
 	});
 });
