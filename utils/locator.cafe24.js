@@ -3,5 +3,6 @@ module.exports = {
 	userPW: 'member_passwd', // xpath id
 
 	productPath: '/product/detail.html?product_no=',
-	reviewPath: '/board/product/list.html?board_no=4'
+	reviewPath: '/board/product/list.html?board_no=4',
+	questionPath: '/board/product/list.html?board_no=6',
 };

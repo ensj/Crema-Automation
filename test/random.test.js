@@ -26,7 +26,6 @@ describe.only('Failed Product Test', function () {
 	let Page, page, driver, token, id, url;
 
 	before(async function() {
-
 		Page = require('../lib/mall.cafe24');
 		page = new Page(o);
 		driver = page.driver;
@@ -41,17 +40,10 @@ describe.only('Failed Product Test', function () {
 		await page.quit();
 	});
 
-	it.skip('Reviews test', async function() {
-		//await page.getProduct();
-		await page.getReviews();
-		await page.writeReview();
-		await page.deleteReview();
-	});
-
-	it('Questions test', async function() {
+	it('Test test', async function() {
 		//await page.get("http://thecrema1.cafe24.com/board/product/list.html?board_no=6");
-		await page.getProduct();
-		await page.writeQuestion();
-		await page.deleteQuestion();
+		await page.getProduct(198);
+		//await page.buyProduct();
+		
 	});
 });

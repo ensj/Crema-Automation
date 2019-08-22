@@ -13,7 +13,9 @@ Crema-Automation is a web testing automation framework created for [CREMA (Creat
 
 ## Installation
 
-In order to run this test framework, Node.js will need to be installed on the computer. Once installed, download this repository. Enter the repository with the following command in the command prompt/terminal:
+In order to run this test framework, Node.js and Selenium-Webdriver will need to be installed on the computer. Node.js can be installed [here](https://nodejs.org/en/). 
+
+Once Node.js is installed, download this repository. Enter the repository with the following command in the command prompt/terminal:
 
 ```bash
 cd /Path/to/repo
@@ -23,6 +25,16 @@ After this, you need to install all the modules required for the framework to ru
 
 ```bash
 npm install
+```
+
+In order for Selenium-webdriver to run tests, it needs something called a browser driver. Crema-Automation only supports chrome at the current moment, so we'll simply install that for now. Chromedriver can be found [here](https://sites.google.com/a/chromium.org/chromedriver/).
+
+Once a chromedriver that matches your Google Chrome's version is downloaded, all you need to do is to add the chromedriver file into a safe folder. Call the folder something like selenium-drivers, and store it somewhere safe. 
+
+Now, we need to add the selenium-drivers folder onto the PATH variable. On a mac, all you need to do is this:
+
+```bash
+export PATH=$PATH:/path/to/selenium-drivers
 ```
 
 Finally, you can start up your tests by typing:

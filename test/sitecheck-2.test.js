@@ -20,10 +20,10 @@ var o = new chrome
 // CAFE24 WIDGET TEST
 
 
-describe('cafe24 Site Check 2', function () {
+describe('cafe24 Site Check', function () {
 	this.timeout(60000);
 	this.slow(20000);
-	let Page, page, driver, token, id, url;
+	let Page, page, driver, id, url;
 
 	before(async function() {
 		Page = require('../lib/mall.cafe24');
@@ -48,6 +48,23 @@ describe('cafe24 Site Check 2', function () {
 	it('Write review at full reviews page', async function() {
 		await page.getReviews();
 		await page.writeReview();
+	});
+
+	it('Write question at product page', async function() {
+		await page.getProduct();
+		await page.writeQuestion();
+	});
+
+	it('Write question at full questions page', async function() {
+		await page.getQuestions();
+		await page.writeQuestion();
+	});
+
+	it('delete posted posts', async function() {
+		await page.deleteReview();
+		await page.deleteReview();
+		await page.deleteQuestion();
+		await page.deleteQuestion();
 	});
 
 });
