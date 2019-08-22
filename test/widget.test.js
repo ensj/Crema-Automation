@@ -72,7 +72,7 @@ describe('makeshop Widget Check', function () {
 
 	before(async function() {
 		Page = require('../lib/mall.makeshop');
-		page = new Page(o);
+		page = new Page(o, {'type': 'chrome'});
 		driver = page.driver;
 
 		id = mall.makeshop.id; 

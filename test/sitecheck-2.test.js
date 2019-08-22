@@ -27,7 +27,7 @@ describe('cafe24 Site Check', function () {
 
 	before(async function() {
 		Page = require('../lib/mall.cafe24');
-		page = new Page(o);
+		page = new Page(o, {'type': 'chrome'});
 		driver = page.driver;
 
 		id = mall.cafe24.id; 
