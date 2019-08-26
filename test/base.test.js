@@ -17,7 +17,7 @@ var o = new chrome
 			//.headless()
 			//.windowSize({ width: 640, height: 480 });
 
-describe('cafe24 Site Check', function () {
+describe('Base Test Suite', function () {
 	this.timeout(60000);
 	this.slow(20000);
 	let Page, page, driver, id, url, productId;
@@ -39,36 +39,48 @@ describe('cafe24 Site Check', function () {
 		await page.quit();
 	});
 
-	it('Write review at product page', async function() {
-		await page.getProduct(productId);
-		await page.writeReview();
+	it('Base Test', async function() {
+		
 	});
 
-	it('Write review at full reviews page', async function() {
-		await page.getReviews();
-		await page.writeReview();
+	it.skip('Skipped Test', async function() {
+		
 	});
 
-	it('Write question at product page', async function() {
-		await page.getProduct(productId);
-		await page.writeQuestion();
+	it.only('Only Test That Runs', async function() {
+		
+	});
+});
+
+describe.skip('Skipped Test Suite', function () {
+	this.timeout(60000);
+	this.slow(20000);
+	let Page, page, driver, id, url;
+
+	before(async function() {
+		Page = require('../lib/mall.cafe24');
+		page = new Page(o, {'type': 'chrome'});
+		driver = page.driver;
+
+		id = mall.cafe24.id; 
+		url = mall.cafe24.url;
+
+		await page.login();
 	});
 
-	it('Write question at full questions page', async function() {
-		await page.getQuestions();
-		await page.writeQuestion();
+	after(async function() {
+		await page.quit();
 	});
 
-	it('Delete posted posts', async function() {
-		await page.deleteReview();
-		await page.deleteReview();
-		await page.deleteQuestion();
-		await page.deleteQuestion();
+	it('Base Test', async function() {
+		
 	});
 
-	it('Buy a product', async function() {
-		await page.getProduct(productId);
-		await page.buyProduct();
+	it.skip('Skipped Test', async function() {
+		
 	});
 
+	it.only('Only Test That Runs', async function() {
+		
+	});
 });
