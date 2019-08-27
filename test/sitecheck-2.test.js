@@ -17,7 +17,7 @@ var o = new chrome
 			//.headless()
 			//.windowSize({ width: 640, height: 480 });
 
-describe('cafe24 Site Check', function () {
+describe.only('cafe24 Site Check 1 / 2', function () {
 	this.timeout(60000);
 	this.slow(20000);
 	let Page, page, driver, id, url, productId;
@@ -30,7 +30,7 @@ describe('cafe24 Site Check', function () {
 		id = mall.cafe24.id; 
 		url = mall.cafe24.url;
 
-		productId = 11;
+		productId = 243;
 
 		await page.login();
 	});
@@ -42,31 +42,28 @@ describe('cafe24 Site Check', function () {
 	it('Write review at product page', async function() {
 		await page.getProduct(productId);
 		await page.writeReview();
+		await page.deleteReview();
 	});
 
 	it('Write review at full reviews page', async function() {
 		await page.getReviews();
 		await page.writeReview();
+		await page.deleteReview();
 	});
 
 	it('Write question at product page', async function() {
 		await page.getProduct(productId);
 		await page.writeQuestion();
+		await page.deleteQuestion();
 	});
 
 	it('Write question at full questions page', async function() {
 		await page.getQuestions();
 		await page.writeQuestion();
-	});
-
-	it('Delete posted posts', async function() {
-		await page.deleteReview();
-		await page.deleteReview();
-		await page.deleteQuestion();
 		await page.deleteQuestion();
 	});
 
-	it('Buy a product', async function() {
+	it.only('Buy a product', async function() {
 		await page.getProduct(productId);
 		await page.buyProduct();
 	});
