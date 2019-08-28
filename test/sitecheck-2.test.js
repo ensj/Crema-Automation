@@ -22,20 +22,30 @@ describe.only('cafe24 Site Check 1 / 2', function () {
 	this.slow(20000);
 	let Page, page, driver, id, url, productId;
 
+	// before all other tests
 	before(async function() {
+		// specify we're using cafe24
 		Page = require('../lib/mall.cafe24');
+		// specify browser type
 		page = new Page(o, {'type': 'chrome'});
+		// get selenium driver
 		driver = page.driver;
 
-		id = mall.cafe24.id; 
+		// get mall id
+		id = mall.cafe24.id;
+		// get mall url 
 		url = mall.cafe24.url;
 
-		productId = 243;
+		// get product id we're testing
+		productId = 243; 
 
+		// log into the website
 		await page.login();
 	});
 
+	// after all tests
 	after(async function() {
+		// quit driver
 		await page.quit();
 	});
 
@@ -63,7 +73,7 @@ describe.only('cafe24 Site Check 1 / 2', function () {
 		await page.deleteQuestion();
 	});
 
-	it.only('Buy a product', async function() {
+	it('Buy a product', async function() {
 		await page.getProduct(productId);
 		await page.buyProduct();
 	});

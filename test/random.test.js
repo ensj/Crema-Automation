@@ -27,7 +27,7 @@ describe('Random Test Experiments', function () {
 
 	before(async function() {
 		Page = require('../lib/mall.cafe24');
-		page = new Page(o, {'type': 'mobile'});
+		page = new Page(o, {'type': 'chrome'});
 		driver = page.driver;
 
 		id = mall.cafe24.id; 
