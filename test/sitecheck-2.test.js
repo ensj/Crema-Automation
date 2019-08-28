@@ -37,7 +37,7 @@ describe.only('cafe24 Site Check 1 / 2', function () {
 		url = mall.cafe24.url;
 
 		// get product id we're testing
-		productId = 243; 
+		productId = 34; 
 
 		// log into the website
 		await page.login();
@@ -73,7 +73,7 @@ describe.only('cafe24 Site Check 1 / 2', function () {
 		await page.deleteQuestion();
 	});
 
-	it('Buy a product', async function() {
+	it.only('Buy a product', async function() {
 		await page.getProduct(productId);
 		await page.buyProduct();
 	});

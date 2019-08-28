@@ -47,35 +47,35 @@ npm test
 
 ```json
 {
-  "apiCreds": {
-    "client": {
-      "id": "an-oauth2-id",
-      "secret": "secret-password"
+  'apiCreds': {
+    'client': {
+      'id': 'an-oauth2-id',
+      'secret': 'secret-password'
     },
-    "auth":{
-      "tokenHost": "a-tokenhost-url"
+    'auth':{
+      'tokenHost': 'a-tokenhost-url'
     }
   },
 
-  "mall": { 
-    "cafe24": { 
-      "url": "mall url",
-      "id": "mall id (on crema)",
-      "userID": "mall's crema login id",
-      "userPW": "mall's crema login password"
+  'mall': { 
+    'cafe24': { 
+      'url': 'mall url',
+      'id': 'mall id (on crema)',
+      'userID': 'mall's crema login id',
+      'userPW': 'mall's crema login password'
     },
-    "godo": { 
-      "url": "mall url",
-      "id": "mall id (on crema)",
-      "userID": "mall's crema login id",
-      "userPW": "mall's crema login password"
+    'godo': { 
+      'url': 'mall url',
+      'id': 'mall id (on crema)',
+      'userID': 'mall's crema login id',
+      'userPW': 'mall's crema login password'
     },
-    "makeshop": { 
-      "url": "mall url",
-      "id": "mall id (on crema)",
-      "reviews": "/board/board.html?code=jason006_board17", 
-      "userID": "mall's crema login id",
-      "userPW": "mall's crema login password"
+    'makeshop': { 
+      'url': 'mall url',
+      'id': 'mall id (on crema)',
+      'reviews': '/board/board.html?code=jason006_board17', 
+      'userID': 'mall's crema login id',
+      'userPW': 'mall's crema login password'
     }
   }
 }
@@ -106,7 +106,7 @@ See the [test folder](./test).
 ### Initialize the mall object with credentials.
 ```javascript
 const chrome = require('selenium-webdriver/chrome');
-const { mall } = require("../utils/credentials.json");
+const { mall } = require('../utils/credentials.json');
 
 var o = new chrome
       .Options()
@@ -114,7 +114,7 @@ var o = new chrome
       .setUserPreferences({ credential_enable_service: false });
 
 Page = require('../lib/mall.subMall');
-page = new Page(o);
+page = new Page(o, {'type': 'chrome'});
 driver = page.driver;
 
 id = mall.cafe24.id; 
@@ -124,7 +124,7 @@ url = mall.cafe24.url;
 ### Navigate to a given URL.
 Returns the selenium driver.
 ```javascript
-page.get("url");
+page.get('url');
 ```
 returns `Promise<undefined>`
 
@@ -132,21 +132,21 @@ returns `Promise<undefined>`
 #### Find by id
 Returns the first element with the given id on the web page.
 ```javascript
-page.findById("id");
+page.findById('id');
 ```
 returns `WebElementPromise`
 
 #### Find by name
 Returns the first element with the given name on the web page.
 ```javascript
-page.findByName("name");
+page.findByName('name');
 ```
 returns `WebElementPromise`
 
 #### Find by xpath
 Returns the first element with the given xpath on the web page.
 ```javascript
-page.findByXPath("xpath");
+page.findByXPath('xpath');
 ```
 returns `WebElementPromise`
 
@@ -154,7 +154,7 @@ returns `WebElementPromise`
 #### Write input
 Writes input into a given element.
 ```javascript
-page.write(element, "input");
+page.write(element, 'input');
 ```
 returns `Promise<undefined>`
 
@@ -168,7 +168,7 @@ returns `Promise<undefined>`
 ### Execute javascript on web page
 Executes a javascript script on a web page.
 ```javascript
-page.executeScript("script");
+page.executeScript('script');
 ```
 returns `IThenable<(T|null)>`
 
@@ -182,7 +182,7 @@ returns `AlertPromise`
 ### Wait for url to become input
 Waits 10 seconds until the url becomes the specified input.
 ```javascript
-page.waitUrl("url");
+page.waitUrl('url');
 ```
 returns `Promise<undefined>`
 
@@ -213,9 +213,58 @@ returns `webdriver`
 ### Get Product Page
 Grabs a random product page from the mall.
 ```javascript
-page.getProduct(url, id); // id is the mall's given id (crema)
+page.getProduct(code); // code is the product's code in the url (crema)
 ```
 returns `Promise<undefined>`
+
+### Get Reviews Page
+Navigates to the reviews page in the mall.
+```javascript
+page.getReviews(loc); // loc is the path of the reviews page. Leave blank if not required.
+```
+returns `Promise<undefined>`
+
+### Get Questions Page
+Navigates to the questions page in the mall.
+```javascript
+page.getQuestions(loc); // loc is the path of the questions page. Leave blank if not required.
+```
+returns `Promise<undefined>`
+
+### Write a Review
+Attempts to write a review on whatever page the user is on.
+```javascript
+page.writeReview();
+```
+returns `IThenable<T>`
+
+### Delete a Review
+Deletes a review that the user wrote.
+```javascript
+page.deleteReview(); 
+```
+returns `IThenable<T>`
+
+### Write a Question
+Attempts to write a question on whatever page the user is on.
+```javascript
+page.writeReview();
+```
+returns `IThenable<T>`
+
+### Delete a Question
+Deletes a question that the user wrote.
+```javascript
+page.deleteReview();
+```
+returns `IThenable<T>`
+
+### Buy Product
+Attempts to buy a product from whatever page the user is on.
+```javascript
+page.buyProduct(); 
+```
+returns `ThenableWebDriver`
 
 ## Authors
 
