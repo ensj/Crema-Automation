@@ -1,23 +1,11 @@
 const {describe, it, after, before} = require('mocha');
-const chrome = require('selenium-webdriver/chrome');
+const ie = require('selenium-webdriver/ie');
 
 const { mall } = require("../utils/credentials.json");
 
-const chai = require('chai');
-const expect = chai.expect;
-const chaiAsPromised = require('chai-as-promised');
-chai.use(chaiAsPromised);
-
 process.on('unhandledRejection', () => {});
 
-var o = new chrome
-			.Options()
-			.addArguments('disable-infobars')
-			.setUserPreferences({ credential_enable_service: false })
-			//.headless()
-			//.windowSize({ width: 640, height: 480 });
-
-describe.only('cafe24 Site Check 1 / 2', function () {
+describe('cafe24 Site Check 1 / 2', function () {
 	this.timeout(60000);
 	this.slow(20000);
 	let Page, page, driver, id, url, productId;
@@ -27,7 +15,7 @@ describe.only('cafe24 Site Check 1 / 2', function () {
 		// specify we're using cafe24
 		Page = require('../lib/mall.cafe24');
 		// specify browser type
-		page = new Page(o, {'type': 'chrome'});
+		page = new Page(o, {'type': 'ie'});
 		// get selenium driver
 		driver = page.driver;
 
@@ -73,7 +61,7 @@ describe.only('cafe24 Site Check 1 / 2', function () {
 		await page.deleteQuestion();
 	});
 
-	it.only('Buy a product', async function() {
+	it('Buy a product', async function() {
 		await page.getProduct(productId);
 		await page.buyProduct();
 	});

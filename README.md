@@ -6,6 +6,7 @@ Crema-Automation is a web testing automation framework created for [CREMA (Creat
 
 - [Installation](#installation)
 - [Word of Note](#word-of-note)
+- [Scaling](#scaling)
 - [Example of Usage](#example-of-usage)
 - [Commands](#commands)
 - [Sub-mall Commands](#sub-mall-commands)
@@ -47,35 +48,35 @@ npm test
 
 ```json
 {
-  'apiCreds': {
-    'client': {
-      'id': 'an-oauth2-id',
-      'secret': 'secret-password'
+  "apiCreds": {
+    "client": {
+      "id": "an-oauth2-id",
+      "secret": "secret-password"
     },
-    'auth':{
-      'tokenHost': 'a-tokenhost-url'
+    "auth":{
+      "tokenHost": "a-tokenhost-url"
     }
   },
 
-  'mall': { 
-    'cafe24': { 
-      'url': 'mall url',
-      'id': 'mall id (on crema)',
-      'userID': 'mall's crema login id',
-      'userPW': 'mall's crema login password'
+  "mall": {
+    "cafe24": {
+      "url": "mall url",
+      "id": "mall id (on crema)",
+      "userID": "mall's crema login id",
+      "userPW": "mall's crema login password"
     },
-    'godo': { 
-      'url': 'mall url',
-      'id': 'mall id (on crema)',
-      'userID': 'mall's crema login id',
-      'userPW': 'mall's crema login password'
+    "godo": {
+      "url": "mall url",
+      "id": "mall id (on crema)",
+      "userID": "mall's crema login id",
+      "userPW": "mall's crema login password"
     },
-    'makeshop': { 
-      'url': 'mall url',
-      'id': 'mall id (on crema)',
-      'reviews': '/board/board.html?code=jason006_board17', 
-      'userID': 'mall's crema login id',
-      'userPW': 'mall's crema login password'
+    "makeshop": {
+      "url": "mall url",
+      "id": "mall id (on crema)",
+      "reviews": "Reviews page path",
+      "userID": "mall's crema login id",
+      "userPW": "mall's crema login password"
     }
   }
 }
@@ -95,6 +96,9 @@ Crema-Automation performs operations through Selenium-webdriver, and performs te
 * All test related operations run through Mocha.
   * For a detailed tutorial on how to use Mocha (and perhaps an assertion library such as chai), visit [mocha](https://mochajs.org/) and [chai](https://www.chaijs.com)'s websites.
 
+## Scaling
+
+Crema-Automation is an unfinished project. Though sitecheck 1/2 and basic popup/widget checks have been automated on Chrome, the tests still need to run smoothly on mobile and internet explorer. 
 
 ## Example of Usage
 

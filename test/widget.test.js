@@ -5,11 +5,6 @@ const api = require('../lib/api');
 
 const { mall } = require("../utils/credentials.json");
 
-const chai = require('chai');
-const expect = chai.expect;
-const chaiAsPromised = require('chai-as-promised');
-chai.use(chaiAsPromised);
-
 process.on('unhandledRejection', () => {});
 
 var o = new chrome
