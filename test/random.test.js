@@ -8,15 +8,12 @@ process.on('unhandledRejection', () => {});
 describe('Mobile Test Experiment', function () {
 	this.timeout(30000);
 	this.slow(20000);
-	let Page, page, driver, token, id, url;
+	let Page, page, driver;
 
 	before(async function() {
 		Page = require('../lib/mall.cafe24');
 		page = new Page(o, {'type': 'mobile'});
 		driver = page.driver;
-
-		id = mall.cafe24.id; 
-		url = mall.cafe24.url;
 
 		await page.login();
 	});
