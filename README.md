@@ -38,13 +38,7 @@ Now, we need to add the selenium-drivers folder onto the PATH variable. On a mac
 export PATH=$PATH:/path/to/selenium-drivers
 ```
 
-Finally, you can start up your tests by typing:
-
-```bash
-npm test
-```
-
-**NOTE:** The program requires a file called `credentials.json` in order to run, which is contained within the utils folder. The general format of the json file looks like this:
+The program requires a file called `credentials.json` in order to run, which is contained within the utils folder. The general format of the json file looks like this:
 
 ```json
 {
@@ -82,6 +76,12 @@ npm test
 }
 ```
 
+Finally, you can start up your tests by typing:
+
+```bash
+npm test
+```
+
 ## Word of Note
 
 Crema-Automation performs operations through Selenium-webdriver, and performs tests using mocha, meaning the following things:
@@ -96,10 +96,6 @@ Crema-Automation performs operations through Selenium-webdriver, and performs te
 * All test related operations run through Mocha.
   * For a detailed tutorial on how to use Mocha (and perhaps an assertion library such as chai), visit [mocha](https://mochajs.org/) and [chai](https://www.chaijs.com)'s websites.
 
-## Scaling
-
-Crema-Automation is an unfinished project. Though sitecheck 1/2 and basic popup/widget checks have been automated on Chrome, the tests still need to run smoothly on mobile and internet explorer. 
-
 ## Example of Usage
 
 See the [test folder](./test).
@@ -107,28 +103,24 @@ See the [test folder](./test).
 ## Commands
 **In order to read specifics about return types and what happens during a given operation, refer to the source code and the Selenium-webdriver documentation.**
 
-### Initialize the mall object with credentials.
+### Initialize the mall object
 ```javascript
-const chrome = require('selenium-webdriver/chrome');
-const { mall } = require('../utils/credentials.json');
-
-var o = new chrome
-      .Options()
-      .addArguments('disable-infobars')
-      .setUserPreferences({ credential_enable_service: false });
-
 Page = require('../lib/mall.subMall');
-page = new Page(o, {'type': 'chrome'});
+page = new Page(o, {'type': 'chrome'}); // can be chrome, mobile, or ie
 driver = page.driver;
-
-id = mall.cafe24.id; 
-url = mall.cafe24.url; 
 ```
 
-### Navigate to a given URL.
+### Navigate to a given URL
 Returns the selenium driver.
 ```javascript
 page.get('url');
+```
+returns `Promise<undefined>`
+
+### Quit driver
+Quits out of the browser.
+```javascript
+page.quit();
 ```
 returns `Promise<undefined>`
 
@@ -155,17 +147,17 @@ page.findByXPath('xpath');
 returns `WebElementPromise`
 
 ### Input letters into elements
-#### Write input
-Writes input into a given element.
-```javascript
-page.write(element, 'input');
-```
-returns `Promise<undefined>`
-
 #### Clear input
 Clears any input in a given element.
 ```javascript
 page.clear(element);
+```
+returns `Promise<undefined>`
+
+#### Write input
+Writes input into a given element.
+```javascript
+page.write(element, 'input');
 ```
 returns `Promise<undefined>`
 
@@ -174,7 +166,7 @@ Executes a javascript script on a web page.
 ```javascript
 page.executeScript('script');
 ```
-returns `IThenable<(T|null)>`
+returns `IThenable<(T)>`
 
 ### Get Alert
 Gets, and returns, any alerts that are found on the web page.
@@ -183,10 +175,17 @@ page.getAlert();
 ```
 returns `AlertPromise`
 
-### Wait for url to become input
+### Wait for url to become a specified url
 Waits 10 seconds until the url becomes the specified input.
 ```javascript
 page.waitUrl('url');
+```
+returns `Promise<undefined>`
+
+### Wait for webpage title to become a specified title
+Waits 10 seconds until the page title becomes a specified title.
+```javascript
+page.waitTitle('title');
 ```
 returns `Promise<undefined>`
 
@@ -200,22 +199,16 @@ page.check({'type':'widget'});
 ```
 returns `Promise<undefined>`
 
-### Quit driver
-Quits out of the browser.
-```javascript
-page.quit();
-```
-
 ## Sub-mall Commands
 ### Login to mall
 Logs into the mall using given credentials.
 ```javascript
-page.login(url);
+page.login();
 ```
-returns `webdriver`
+returns `IThenable<T>`
 
 ### Get Product Page
-Grabs a random product page from the mall.
+Grabs a product page from the mall. (Relies on the Crema API for a code if not specified in the params.)
 ```javascript
 page.getProduct(code); // code is the product's code in the url (crema)
 ```
@@ -252,14 +245,28 @@ returns `IThenable<T>`
 ### Write a Question
 Attempts to write a question on whatever page the user is on.
 ```javascript
-page.writeReview();
+page.writeQuestion();
 ```
 returns `IThenable<T>`
 
 ### Delete a Question
 Deletes a question that the user wrote.
 ```javascript
-page.deleteReview();
+page.deleteQuestion();
+```
+returns `IThenable<T>`
+
+### Put Product in Basket
+Attempts to put a given product on the page into the user's basket.
+```javascript
+page.putBasket();
+```
+returns `null`
+
+### Order All in Basket
+Attempts to order all items in the current basket.
+```javascript
+page.orderAll();
 ```
 returns `IThenable<T>`
 
@@ -268,7 +275,14 @@ Attempts to buy a product from whatever page the user is on.
 ```javascript
 page.buyProduct(); 
 ```
-returns `ThenableWebDriver`
+returns `IThenable<T>`
+
+### Cancel Order
+Attempts to cancel the most recent order the user put through.
+```javascript
+page.cancelOrder();
+```
+returns `Promise<undefined>`
 
 ## Authors
 

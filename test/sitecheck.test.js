@@ -1,5 +1,4 @@
 const {describe, it, after, before} = require('mocha');
-const { mall } = require("../utils/credentials.json");
 
 process.on('unhandledRejection', () => {});
 
@@ -13,12 +12,12 @@ describe.only('cafe24 Site Check', function () {
 		// specify we're using cafe24
 		Page = require('../lib/mall.cafe24');
 		// specify browser type
-		page = new Page({'type': 'chrome'});
+		page = new Page({'type': 'mobile'});
 		// get selenium driver
 		driver = page.driver;
 
 		// get product id we're testing
-		productId = 243; 
+		productId = 148; 
 
 		// log into the website
 		await page.login();
